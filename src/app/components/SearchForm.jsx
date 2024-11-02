@@ -1,35 +1,24 @@
-"use client"
+"use client"; 
+// Asegúrate de que esta línea esté al principio del archivo
 
-import { useState } from "react"
-import { useRouter } from "next/router";
-
-export function SearchForm(){
-    const router = useRouter();
-    const [searchValue, setSearchValue] = useState('');
-
-    function handleSubmit(e){
-        e.preventDefault()
-        router.push(searchValue);
-    }
-    function handleChange(e){
-        e.preventDefault();
+export function SearchForm({ searchValue, setSearchValue }) {
+    function handleChange(e) {
         setSearchValue(e.target.value);
     }
-    
-    return <>
-        <form onSubmit={handleSubmit}>
-            <label for='searchStr'>Search name: </label>
-            <input 
-                className="text-black"
-                type="text" 
-                id="searchStr" 
-                name="searchStr" 
-                value={searchValue}
-                onChange={handleChange}
-                />
-                
 
-            
-        </form>
-    </>
+    return (
+        <>
+            <form onSubmit={(e) => e.preventDefault()}>
+                <label htmlFor='searchStr'>Filtrar: </label>
+                <input 
+                    className="text-black bg-white rounded-md p-2 shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
+                    type="text" 
+                    id="searchStr" 
+                    name="searchStr" 
+                    value={searchValue}
+                    onChange={handleChange}
+                />
+            </form>
+        </>
+    );
 }
